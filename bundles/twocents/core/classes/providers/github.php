@@ -123,23 +123,27 @@ class GitHub extends Provider {
 
 			// Iterate over the asset directory of the article and if we have cached versions of the
 			// asset we'll load that up instead.
-			foreach($this->first('repos/:repo/contents/articles/' . str_replace(ARTICLE_EXTENSION, null, $article->raw->name)) ?: array() as $asset)
+			foreach ($this->first('repos/:repo/contents/articles/' . str_replace(ARTICLE_EXTENSION, null, $article->raw->name)) ?: array() as $asset)
 			{
-				if(is_object($asset))
+				if (is_object($asset))
 				{
 					$this->queue('repos/:repo/contents/' . $asset->path);
 				}
 			}
 
 			// Spin through the assets we need to fetch and add them to the article.
-			foreach($this->fetch() as $asset)
+			foreach ($this->fetch() as $asset)
 			{
 				$article->registerAsset($asset->name, base64_decode($asset->content));
 			}
 
-			return $article->body(base64_decode($article->raw->content))
-						   ->parse()
-						   ->author($this->author($article->author));
+			$article->body(base64_decode($article->raw->content))
+					->parse();
+
+			if ( ! is_null($article->author))
+			{
+				$article->author($this->author($article->author));
+			}
 		}
 	}
 
@@ -151,20 +155,20 @@ class GitHub extends Provider {
 	 */
 	protected function errors($item)
 	{
-		if(is_object($item))
+		if (is_object($item))
 		{
-			if(property_exists($item, 'message') and $item->message == 'Not Found')
+			if (property_exists($item, 'message') and $item->message == 'Not Found')
 			{
 				return array();
 			}
 
 			return $item;
 		}
-		elseif(is_array($item))
+		elseif (is_array($item))
 		{
-			foreach($item as $key => $value)
+			foreach ($item as $key => $value)
 			{
-				if(is_object($value) and property_exists($value, 'message') and $value->message == 'Not Found')
+				if (is_object($value) and property_exists($value, 'message') and $value->message == 'Not Found')
 				{
 					unset($item[$key]);
 				}
