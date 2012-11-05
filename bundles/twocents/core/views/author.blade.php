@@ -12,12 +12,12 @@
 
 		@if($author->twitter)
 			<dt>Twitter</dt>
-			<dd>{{ HTML::link($author->twitter, $author->twitter) }}</dd>
+			<dd>{{ HTML::link('http://twitter.com/'.$author->twitter, $author->twitter) }}</dd>
 		@endif
 
 		@if($author->github)
 			<dt>GitHub</dt>
-			<dd>{{ HTML::link($author->github, $author->github) }}</dd>
+			<dd>{{ HTML::link('http://github.com/'.$author->github, $author->github) }}</dd>
 		@endif
 
 		@if($author->location)
