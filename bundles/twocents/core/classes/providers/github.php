@@ -144,6 +144,8 @@ class GitHub extends Provider {
 			{
 				$article->author($this->author($article->author));
 			}
+
+			return $article;
 		}
 	}
 
