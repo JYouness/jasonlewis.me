@@ -17,7 +17,7 @@ a:hover {
 }
 
 #container {
-	margin: 0 4%;
+	margin: 0 16%;
 }
 
 #header {
@@ -71,6 +71,10 @@ a:hover {
 
 #main {
 	float: right;
+	width: 100%;
+}
+
+#sidebar + #main {
 	width: 66%;
 }
 

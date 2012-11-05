@@ -12,30 +12,23 @@
 		<div id="container">
 
 			<div id="header">
-				<h1><a href="{{ URL::to_route('twocents: home') }}">Two<span>Cents</span></a></h1>
+				<h1><a href="{{ URL::to_route('twocents: home') }}">Jason<span>Lewis</span></a></h1>
 
 				<ul>
 					<li>{{ HTML::link_to_route('twocents: page', 'Contribute', array('contribute')) }}</li>
 				</ul>
 			</div>
 
+			@if(isset($sidebar))
+			<div id="sidebar">
+
+				{{ $sidebar }}
+			</div>
+			@endif
+
 			<div id="main">
 
 				{{ $content }}
-
-			</div>
-
-			<div id="sidebar">
-
-				{{ isset($sidebar) ? $sidebar : null }}
-
-				<div class="section">
-					<h2>About Two Cents</h2>
-
-					<p>
-						Two Cents is a Git based blogging engine bundle for the Laravel framework.
-					</p>
-				</div>
 
 			</div>
 

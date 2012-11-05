@@ -96,6 +96,8 @@ class GitHub extends Provider {
 
 		// Spin through each article and find the author for the article. We'll also assign the body of the article
 		// and parse it so everything displays correctly.
+		$sort = array();
+		
 		foreach ($articles as $article)
 		{
 			$article->body(base64_decode($article->raw->content))->parse();
