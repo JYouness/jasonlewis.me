@@ -42,7 +42,7 @@ class Author extends Meta {
 	{
 		$author = $this->parseMeta($author);
 
-		$this->bio = trim($author);
+		$this->bio = Markdown::parse(trim($author));
 
 		$this->slug = Str::slug($this->name);
 

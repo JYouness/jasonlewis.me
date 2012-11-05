@@ -13,11 +13,11 @@
 		</p>
 	</div>
 
-	@if(Config::get('twocents::twocents.comments.enabled'))
+	@if(Config::get('twocents::twocents.disqus.enabled'))
 		<div id="disqus_thread"></div>
 		<script type="text/javascript">
 		    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-		    var disqus_shortname = '{{ Config::get('twocents::twocents.comments.shortname') }}';
+		    var disqus_shortname = '{{ Config::get('twocents::twocents.disqus.shortname') }}';
 
 		    /* * * DON'T EDIT BELOW THIS LINE * * */
 		    (function() {
