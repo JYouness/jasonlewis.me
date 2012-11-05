@@ -1,22 +1,65 @@
 <div id="articles">
 
-	@foreach($articles as $article)
+	<?php $article = array_shift($articles); ?>
 
 	<div class="article">
-
 		<h2 class="title"><a href="{{ URL::to_route('twocents: article', array($article->slug)) }}">{{ $article->title }}</a></h2>
 
 		<div class="meta">
 			By {{ $article->author->name }} on <span class="date">{{ date('j F, Y', strtotime($article->date)) }}</span>
 		</div>
 
-		<p>
+		<div class="body">
 			{{ $article->intro }}
-		</p>
+		</div>
 
 		@if($article->more)
 			{{ HTML::link_to_route('twocents: article', 'Read more', array($article->slug), array('class' => 'read-more')) }}
 		@endif
+	</div>
+
+	<div class="article">
+		<h2 class="title"><a href="{{ URL::to_route('twocents: article', array($article->slug)) }}">{{ $article->title }}</a></h2>
+
+		<div class="meta">
+			By {{ $article->author->name }} on <span class="date">{{ date('j F, Y', strtotime($article->date)) }}</span>
+		</div>
+
+		<div class="body">
+			{{ $article->intro }}
+		</body>
+
+		@if($article->more)
+			{{ HTML::link_to_route('twocents: article', 'Read more', array($article->slug), array('class' => 'read-more')) }}
+		@endif
+	</div>
+
+	<div class="spacer"></div>
+
+	<div class="article">
+		<h3 class="title"><a href="{{ URL::to_route('twocents: article', array($article->slug)) }}">{{ $article->title }}</a></h3>
+
+		<div class="meta">
+			By {{ $article->author->name }} on <span class="date">{{ date('j F, Y', strtotime($article->date)) }}</span>
+		</div>
+	</div>
+
+	<div class="article">
+		<h3 class="title"><a href="{{ URL::to_route('twocents: article', array($article->slug)) }}">{{ $article->title }}</a></h3>
+
+		<div class="meta">
+			By {{ $article->author->name }} on <span class="date">{{ date('j F, Y', strtotime($article->date)) }}</span>
+		</div>
+	</div>
+
+	@foreach($articles as $article)
+
+	<div class="article">
+		<h3 class="title"><a href="{{ URL::to_route('twocents: article', array($article->slug)) }}">{{ $article->title }}</a></h2>
+
+		<div class="meta">
+			By {{ $article->author->name }} on <span class="date">{{ date('j F, Y', strtotime($article->date)) }}</span>
+		</div>
 	</div>
 
 	@endforeach

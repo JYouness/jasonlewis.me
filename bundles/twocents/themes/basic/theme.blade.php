@@ -2,7 +2,7 @@
 <html>
 
 	<head>
-		<title>{{ $title }} &ndash; Two Cents</title>
+		<title>{{ $title }} &ndash; Ramblings from the Land Down Under</title>
 
 		{{ TwoCents\Theme::style('css/theme.css') }}
 	</head>
@@ -15,13 +15,15 @@
 				<h1><a href="{{ URL::to_route('twocents: home') }}">Jason<span>Lewis</span></a></h1>
 
 				<ul>
-					<li>{{ HTML::link_to_route('twocents: page', 'Contribute', array('contribute')) }}</li>
+					<li>{{ HTML::link_to_route('twocents: home', 'Home') }}</li>
+					<li>{{ HTML::link_to_route('twocents: page', 'Code', array('code')) }}</li>
+					<li>{{ HTML::link('http://github.com/jasonlewis', 'GitHub') }}</li>
+					<li>{{ HTML::link('http://twitter.com/jasonclewis', 'Twitter') }}</li>
 				</ul>
 			</div>
 
 			@if(isset($sidebar))
 			<div id="sidebar">
-
 				{{ $sidebar }}
 			</div>
 			@endif

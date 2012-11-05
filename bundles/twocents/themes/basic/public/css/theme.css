@@ -122,7 +122,7 @@ a:hover {
 	padding: 2px;
 }
 
-h2 {
+h2, h3 {
 	font-family: "Ubuntu", serif;
 	font-weight: normal;
 	font-size: 24px;
@@ -131,21 +131,47 @@ h2 {
 }
 
 h2.title {
-	font-size: 30px;
+	font-size: 28px;
 	margin: 0 0 12px;
 	color: #db5757;
 }
 
-h2 > a {
+.spacer {
+	height: 1px;
+	width: 20%;
+	background-color: #efefef;
+	margin: 70px auto;
+}
+
+h2 > a,
+h3 > a {
 	text-decoration: none;
+}
+
+#articles .article {
+	margin: 0 0 46px;
+}
+
+#articles .article:last-child {
+	margin: 0;
+}
+
+#articles .article > h3.title {
+	color: #444;
+	margin: 0 0 6px;
+}
+
+#articles .article > h3.title > a {
+	color: #444;
 }
 
 #articles .article > .meta {
 	color: #999;
 	font-size: 12px;
+}
+
+#articles .article > h2 + meta {
 	border-bottom: 1px dashed #eee;
-	padding: 0 0 12px;
-	margin: 0 0 12px;
 }
 
 #articles .article > .meta a {
@@ -164,6 +190,10 @@ h2 > a {
 
 #articles .article p {
 	margin: 8px 0;
+}
+
+#articles .article .body {
+	padding: 18px 0 0;
 }
 
 #articles .article a.read-more {
