@@ -19,7 +19,8 @@ class Article extends Meta {
 	protected $meta = array(
 		'title',
 		'author',
-		'date'
+		'date',
+		'intro'
 	);
 
 	/**
@@ -38,6 +39,7 @@ class Article extends Meta {
 	public function __construct($article)
 	{
 		$this->raw = $article;
+		$this->intro = 'yes';
 	}
 
 	/**
@@ -72,11 +74,19 @@ class Article extends Meta {
 		// Parse the body of the article through the Markdown parser.
 		$this->body = Markdown::parse(trim($this->body));
 
-		// Fetch the introductory section of the article by selecting all the text before
-		// the first heading tag.
-		preg_match('/(?:(?!<h(1|2|3|4|5)>).)*/s', $this->body, $matches);
+		// Introductions can be disabled on a per article basis by using the @intro meta data.
+		// If introductions are enabled then all the text before the first heading is considered
+		// to be part of the intro.
+		if (Str::lower($this->intro) == 'yes')
+		{
+			preg_match('/(?:(?!<h(1|2|3|4|5)>).)*/s', $this->body, $matches);
 
-		$this->intro = count($matches) ? $matches[0] : $this->body;
+			$this->intro = count($matches) ? $matches[0] : $this->body;
+		}
+		else
+		{
+			$this->intro = $this->body;
+		}
 
 		// The article slug is simply a slugged version of the title. There should be no
 		// duplicates.

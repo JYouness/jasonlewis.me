@@ -2,7 +2,7 @@
 <html>
 
 	<head>
-		<title>{{ $title }} &ndash; Ramblings from the Land Down Under</title>
+		<title>{{ $title }} &ndash; Two Cents</title>
 
 		{{ TwoCents\Theme::style('css/theme.css') }}
 	</head>
