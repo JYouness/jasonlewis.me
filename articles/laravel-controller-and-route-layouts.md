@@ -60,9 +60,9 @@ And now we'll create the two views that were used, `layouts.main` and `users.ind
 ~~~~
 // File: views/layouts/main.blade.php
 
-&lt;h2&gt;This is our layout!&lt;/h2&gt;
-
-{{ $content }}
+<div class="content">
+	{{ $content }}
+</div>
 ~~~~
 
 ~~~~
