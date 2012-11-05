@@ -59,9 +59,12 @@ class Article extends Meta {
 
 		$replace = array();
 
-		foreach ($assets as $key => $asset)
+		foreach ($assets as $key => $file)
 		{
-			list($article, $file) = explode('/', $asset);
+			if (str_contains('/', $file))
+			{
+				list($article, $file) = explode('/', $file);
+			}
 
 			if (isset($this->assets[$file]))
 			{
@@ -69,7 +72,10 @@ class Article extends Meta {
 			}
 		}
 
-		$this->body = str_replace($search, $replace, $this->body);
+		if ( ! empty($replace))
+		{
+			$this->body = str_replace($search, $replace, $this->body);
+		}
 
 		// Parse the body of the article through the Markdown parser.
 		$this->body = Markdown::parse(trim($this->body));
