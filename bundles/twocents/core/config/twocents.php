@@ -17,7 +17,7 @@ return array(
 
 	'repository' => array(
 		'provider' => 'github',
-		'name' => ''
+		'name' => 'jasonlewis/jasonlewis.me'
 	),
 
 	/*
