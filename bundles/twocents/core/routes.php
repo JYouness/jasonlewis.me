@@ -62,12 +62,16 @@ Route::get('(:bundle)/article/(:any)', array('as' => 'twocents: article', functi
 
 Route::get('(:bundle)/(:all)', array('as' => 'twocents: page', function($page)
 {
+	$theme = View::of('twocents: theme');
+
 	if( ! $page = TwoCents\Repository::page($page))
 	{
-		return Redirect::to_route('twocents: home');
+		$theme->nest('content', 'twocents::oops')
+			  ->with('title', 'Oops! Not found.');
 	}
-
-	return View::of('twocents: theme')
-			   ->nest('content', 'twocents::page', compact('page'))
-			   ->with('title', $page->title);
+	else
+	{
+		$theme->nest('content', 'twocents::page', compact('page'))
+			  ->with('title', $page->title);
+	}
 }));

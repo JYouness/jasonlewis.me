@@ -88,6 +88,8 @@ class Article extends Meta {
 			$this->intro = $this->body;
 		}
 
+		$this->more = ($this->intro != $this->body);
+
 		// The article slug is simply a slugged version of the title. There should be no
 		// duplicates.
 		$this->slug = Str::slug($this->title);

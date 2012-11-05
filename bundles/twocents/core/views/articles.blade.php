@@ -14,7 +14,9 @@
 			{{ $article->intro }}
 		</p>
 
-		{{ HTML::link_to_route('twocents: article', 'Read more', array($article->slug), array('class' => 'read-more')) }}
+		@if($article->more)
+			{{ HTML::link_to_route('twocents: article', 'Read more', array($article->slug), array('class' => 'read-more')) }}
+		@endif
 	</div>
 
 	@endforeach

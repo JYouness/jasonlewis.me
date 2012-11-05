@@ -12,10 +12,10 @@
 		<div id="container">
 
 			<div id="header">
-				<h1><a href="{{ URL::to_route('twocents: home') }}">Jason<span>Lewis</span></a></h1>
+				<h1><a href="{{ URL::to_route('twocents: home') }}">Two<span>Cents</span></a></h1>
 
 				<ul>
-					<li>{{ HTML::link_to_route('twocents: page', 'Two Cents', array('code/twocents')) }}</li>
+					<li>{{ HTML::link_to_route('twocents: page', 'Contribute', array('contribute')) }}</li>
 				</ul>
 			</div>
 

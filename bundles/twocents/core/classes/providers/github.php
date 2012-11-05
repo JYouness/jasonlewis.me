@@ -104,9 +104,13 @@ class GitHub extends Provider {
 			{
 				$article->author($authors[$article->author]);
 			}
+
+			$sort[date('d/m/Y G i s', strtotime($article->date))] = $article;
 		}
 
-		return $articles;
+		krsort($sort);
+
+		return $sort;
 	}
 
 	/**
