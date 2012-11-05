@@ -122,20 +122,6 @@ a:hover {
 	padding: 2px;
 }
 
-h2, h3 {
-	font-family: "Ubuntu", serif;
-	font-weight: normal;
-	font-size: 24px;
-	margin: 24px 0;
-	text-transform: uppercase;
-}
-
-h2.title {
-	font-size: 28px;
-	margin: 0 0 12px;
-	color: #db5757;
-}
-
 .spacer {
 	height: 1px;
 	width: 20%;
@@ -143,8 +129,24 @@ h2.title {
 	margin: 70px auto;
 }
 
-h2 > a,
-h3 > a {
+#articles .article h1,
+#articles .article h2,
+#articles .article h3,
+#articles .article h4,
+#articles .article h5 {
+	font-family: "Ubuntu", serif;
+	font-weight: normal;
+	font-size: 26px;
+	margin: 24px 0;
+	text-transform: uppercase;
+}
+
+#articles .article h2 { font-size: 24px; }
+#articles .article h3 { font-size: 20px; }
+#articles .article h4 { font-size: 18px; }
+#articles .article h5 { font-size: 16px; }
+
+#articles .article .title > a {
 	text-decoration: none;
 }
 
