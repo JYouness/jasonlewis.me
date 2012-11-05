@@ -74,4 +74,6 @@ Route::get('(:bundle)/(:all)', array('as' => 'twocents: page', function($page)
 		$theme->nest('content', 'twocents::page', compact('page'))
 			  ->with('title', $page->title);
 	}
+
+	return $theme;
 }));
