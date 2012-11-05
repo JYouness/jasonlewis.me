@@ -35,3 +35,6 @@ dwsync.xml
 intermediate
 publish
 .idea
+
+# ST2 project files
+*.sublime-*
