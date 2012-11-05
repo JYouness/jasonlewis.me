@@ -141,9 +141,9 @@ a:hover {
 	text-transform: uppercase;
 }
 
-#articles .article h2 { font-size: 27px; }
-#articles .article h3 { font-size: 22px; }
-#articles .article h4 { font-size: 18px; }
+#articles .article h2 { font-size: 28px; }
+#articles .article h3 { font-size: 24px; }
+#articles .article h4 { font-size: 20px; }
 #articles .article h5 { font-size: 16px; }
 
 #articles .article .title > a {
