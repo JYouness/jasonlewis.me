@@ -77,9 +77,6 @@ class Article extends Meta {
 			$this->body = str_replace($search, $replace, $this->body);
 		}
 
-		// Parse the body of the article through the Markdown parser.
-		$this->body = Markdown::parse(trim($this->body));
-
 		// Introductions can be disabled on a per article basis by using the @intro meta data.
 		// If introductions are enabled then all the text before the first heading is considered
 		// to be part of the intro.
@@ -87,7 +84,14 @@ class Article extends Meta {
 		{
 			preg_match('/(.*?)<h(1|2|3|4|5)>/s', $this->body, $matches);
 
-			$this->intro = count($matches) ? $matches[0] : $this->body;
+			if (empty($matches))
+			{
+				preg_match('/(.*?)@more/s', $this->body, $matches);
+
+				$this->body = str_replace('@more', '', $this->body);
+			}
+
+			$this->intro = ( ! empty($matches) ? $matches[1] : $this->body);
 		}
 		else
 		{
@@ -95,6 +99,11 @@ class Article extends Meta {
 		}
 
 		$this->more = ($this->intro != $this->body);
+
+		// Parse the body and intro of the article through the Markdown parser.
+		$this->body = Markdown::parse(trim($this->body));
+
+		$this->intro = Markdown::parse(trim($this->intro));
 
 		// The article slug is simply a slugged version of the title. There should be no
 		// duplicates.
