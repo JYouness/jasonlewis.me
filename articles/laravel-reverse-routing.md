@@ -111,9 +111,9 @@ And now just use `HTML::link_to_route()`.
 {{ HTML::link_to_route('about', 'About Jason', array('jason')) }}
 ~~~~
 
-### Tips and Tricks
+### Taking it Further
 
-There's a number of cool things you can do with reverse routing.
+You can take reverse routing even furhter if you use it a lot within your application.
 
 #### URL::name\_of\_route()
 
@@ -166,7 +166,7 @@ Following the steps as above you can extend the HTML class so that creating link
 class HTML extends Laravel\HTML {
 
 	/**
-	 * Map unmatched statc calls.
+	 * Map unmatched static calls.
 	 * 
 	 * @param  string  $method
 	 * @param  array   $parameters
