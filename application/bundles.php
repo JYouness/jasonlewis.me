@@ -35,6 +35,6 @@
 
 return array(
 
-	'twocents' => array('handles' => '/', 'location' => 'twocents/core')
+	'twocents' => array('handles' => '/')
 
 );

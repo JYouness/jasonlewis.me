@@ -10,7 +10,7 @@
 |
 */
 
-set_path('twocents', realpath(__DIR__ . DS . '..') . DS);
+set_path('twocents', __DIR__.DS);
 
 define('ARTICLE_EXTENSION', '.'.Config::get('twocents::twocents.article_extension', 'md'));
 
@@ -25,7 +25,7 @@ define('ARTICLE_EXTENSION', '.'.Config::get('twocents::twocents.article_extensio
 */
 
 Autoloader::namespaces(array(
-	'TwoCents' => __DIR__ . DS . 'classes'
+	'TwoCents' => path('twocents').'classes'
 ));
 
 /*
