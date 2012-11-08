@@ -123,6 +123,5 @@ return array(
 	*/
 
 	'ignored_articles' => array(
-		'code'
 	)
 );
