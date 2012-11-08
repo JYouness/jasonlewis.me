@@ -20,7 +20,7 @@ Basset is a Better Asset Management package for Laravel. It easily allows you to
 In your Laravel 4 application add `jasonlewis/basset` as a requirement.
 
 ~~~~
-"basset/basset": "1.*"
+"jasonlewis/basset": "1.*"
 ~~~~
 
 Update your packages with `composer update`.
