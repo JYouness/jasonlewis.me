@@ -60,7 +60,7 @@ class GitHub extends Provider {
 			{
 				$name = str_replace(ARTICLE_EXTENSION, null, $value->name);
 
-				if (in_array($name, (array) Config::get('twocents::twocents.ignored_articles')))
+				if ($this->isIgnored($name))
 				{
 					continue;
 				}
@@ -91,7 +91,10 @@ class GitHub extends Provider {
 		{
 			$article = trim(str_replace(array($item->name, 'articles'), null, $item->path), '/');
 
-			$articles[$article]->registerAsset($item->name, base64_decode($item->content));
+			if (isset($articles[$article]))
+			{
+				$articles[$article]->registerAsset($item->name, base64_decode($item->content));
+			}
 		}
 
 		// Spin through each article and find the author for the article. We'll also assign the body of the article
