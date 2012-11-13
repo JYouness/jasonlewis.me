@@ -12,7 +12,7 @@ Basset is a Better Asset Management package for Laravel. It easily allows you to
 ### Requirements
 
 - Laravel 4
-- Depends on Assetic
+- Assetic
 - PHP 5.3+
 
 ### Installation
@@ -20,12 +20,18 @@ Basset is a Better Asset Management package for Laravel. It easily allows you to
 In your Laravel 4 application add `jasonlewis/basset` as a requirement.
 
 ~~~~
-"jasonlewis/basset": "1.*"
+"jasonlewis/basset": "3.*"
 ~~~~
 
 Update your packages with `composer update`.
 
-You can now use Basset to manage your assets.
+You need to register Basset's service provider with Laravel. Open up `app/config/app.php` and add `Basset\Providers\BassetServiceProvider` to the array of providers at the bottom. To confirm that Basset is indeed working correctly you can use your terminal.
+
+~~~~
+$ php artisan basset
+~~~~
+
+You should get the Basset version displayed within your terminal. You're now ready to begin using Basset!
 
 ### Configuration
 
