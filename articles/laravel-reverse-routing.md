@@ -180,12 +180,16 @@ class HTML extends Laravel\HTML {
 
 			return call_user_func_array('HTML::link_to_route', $parameters);
 		}
+
+		return parent::__callStatic($method, $parameters);
 	}
 
 }
 ~~~~
 
 So if the method that was called starts with `link_to_` then we'll prepend the `$parameters` array with the name of the route. As before, you can now use a simpler syntax: `HTML::link_to_about('About Jason', array('jason'))`
+
+You'll also notice that the parent `__callStatic()` method is returned if the method name did match a link to a named route. This will preserve any macros that you write. Thanks to **Vilhjálmur Magnússon** for pointing this out in the comments.
 
 ### Conclusion and Further Reading
 
