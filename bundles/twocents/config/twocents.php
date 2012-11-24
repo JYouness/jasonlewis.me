@@ -123,6 +123,7 @@ return array(
 	*/
 
 	'ignored_articles' => array(
-		'code'
+		'code',
+		'laravel-tutorials'
 	)
 );
