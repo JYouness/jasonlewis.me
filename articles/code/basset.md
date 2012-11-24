@@ -2,6 +2,8 @@
 
 Basset is a Better Asset Management package for Laravel. It easily allows you to manage all of your styles and scripts within your application.
 
+*Please note that the following guide is intended for the Laravel 4 version of Basset. The bundle for Laravel 3 is going to undergo some drastic changes to be brought in line with the Laravel 4 version.*
+
 ### Features
 
 - Group your assets into neat collections.
@@ -25,7 +27,7 @@ In your Laravel 4 application add `jasonlewis/basset` as a requirement.
 
 Update your packages with `composer update`.
 
-You need to register Basset's service provider with Laravel. Open up `app/config/app.php` and add `Basset\Providers\BassetServiceProvider` to the array of providers at the bottom. To confirm that Basset is indeed working correctly you can use your terminal.
+You need to register Basset's service provider with Laravel. Open up `app/config/app.php` and add `Basset\BassetServiceProvider` to the array of providers at the bottom. To confirm that Basset is indeed working correctly you can use your terminal.
 
 ~~~~
 $ php artisan basset
@@ -35,26 +37,32 @@ You should get the Basset version displayed within your terminal. You're now rea
 
 ### Configuration
 
-Basset's configuration file can be extended by creating `app/config/basset.php`. The default configuration file can be found at `vendor/jasonlewis/basset/src/defaults.php`. Any keys that you use in your own configuration file will be used instead of the default.
+Basset's configuration file can be extended by creating `app/config/packages/jasonlewis/basset.php`. You can find the default configuration file at `vendor/jasonlewis/basset/src/basset.php`. Any keys that you use within your own configuration file will overwrite the defaults. This means you don't have to copy the entire file, but only replace the keys you want to change.
 
-Remember to change any directories or set the name of your production environment so Basset will know when to serve your static assets.
+Remember to update your directories or set your production environment.
 
 ### Asset Collections
 
-Collections can be defined within Basset itself at `vendor/jasonlewis/basset/src/collections.php` or within your `app/config/basset.php` configuration file under the `collections` key.
+Collections can be defined just about anywhere. The best place to put your collections is somewhere that's included from both the web and the command line.
 
-*Currently there is no `app/start.php` available, however you can use `app/routes.php` to register collections.*
+Collections can be defined in your `app/config/packages/jasonlewis/basset.php` configuration file under the `collections` key. See the default configuration file for more information.
 
-There are a number of methods available to you when defining a collection. The easiest way is with `Basset\Collection::add()`, which will look for the file within the directories given in the configuration.
+You can also define collections in the `app/start/global.php` file or include another file within that global start file. This start file is included during the startup process by both the web and command line.
+
+There are a number of methods available to you when defining a collection. The easiest way is with `Basset\Collection::add()`.
 
 ~~~~
 Basset::collection('website', function($collection)
 {
     $collection->add('main.css');
+
+    $collection->add('path: path/to/main.css');
 });
 ~~~~
 
-With the default configuration Basset would first look in `app/assets/css` for `main.css` and then in `app/assets/js`.
+This method will add a file in a variety of ways. First it checks to see if you've prefixed the file with `path: `. This allows you to provide a full path to the file, wherever it may be.
+
+Next it will look for the file within the public directory. So it would look for `/example/application/public/main.css`. Finally it will spin through each of the directories defined within your configuration file and search for the `main.css` file.
 
 #### Requiring a Directory
 
@@ -63,8 +71,11 @@ Basset is able to require every valid asset within a given directory. `Basset\Co
 ~~~~
 Basset::collection('website', function($collection)
 {
+    // Use a directory within the public directory.
+    $collection->requireTree('assets/css');
+
     // Use the name of a directory defined in the configuration file.
-    $collection->requireDirectory('css');
+    $collection->requireDirectory('name: css');
 
     // Use the absolute path to a directory.
     $collection->requireDirectory('path: /path/to/directory');
@@ -81,8 +92,11 @@ Basset is also able to recursively iterate through an entire directory tree to a
 ~~~~
 Basset::collection('website', function($collection)
 {
+    // Use a directory within the public directory.
+    $collection->requireTree('assets/css');
+
     // Use the name of a directory defined in the configuration file.
-    $collection->requireTree('css');
+    $collection->requireTree('name: css');
 
     // Use the absolute path to a directory.
     $collection->requireTree('path: /path/to/directory');
@@ -97,7 +111,7 @@ You can change the directory you are working in with Basset by using the `Basset
 ~~~~
 Basset::collection('website', function($collection)
 {
-    $collection->directory('css', function($collection)
+    $collection->directory('assets/css', function($collection)
     {
         // Add the example.css file within the directory named css.
         $collection->add('example.css');
@@ -111,6 +125,8 @@ Basset::collection('website', function($collection)
 });
 ~~~~
 
+You can also use the `name: ` and `path: ` prefixes here as previously shown.
+
 #### Except and Only
 
 There may be times when you want to require a directory or tree except for a couple of assets.
@@ -119,10 +135,10 @@ There may be times when you want to require a directory or tree except for a cou
 Basset::collection('website', function($collection)
 {
     // Exclude the admin.css file.
-    $collection->requireDirectory('css')->except('admin.css');
+    $collection->requireDirectory('assets/css')->except('admin.css');
 
     // Exclude a number of admin related files.
-    $collection->requireDirectory('css')->except(array('admin.css', 'admin-tables.css'));
+    $collection->requireDirectory('assets/css')->except(array('admin.css', 'admin-tables.css'));
     
 });
 ~~~~
@@ -133,10 +149,10 @@ The same can be applied to only use a couple of assets.
 Basset::collection('website', function($collection)
 {
     // Include only the admin.css file.
-    $collection->requireDirectory('css')->only('admin.css');
+    $collection->requireDirectory('assets/css')->only('admin.css');
 
     // Include only a number of admin related files.
-    $collection->requireDirectory('css')->only(array('admin.css', 'admin-tables.css'));
+    $collection->requireDirectory('assets/css')->only(array('admin.css', 'admin-tables.css'));
     
 });
 ~~~~
@@ -152,14 +168,26 @@ Basset::collection('website', function($collection)
     $collection->add('example.css')->apply('CssMinFilter');
 
     // Apply a filter to a directory.
-    $collection->requireDirectory('css')->apply('CssMinFilter');
+    $collection->requireDirectory('assets/css')->apply('CssMinFilter');
 
     // Apply a filter to the example.css and pass an array of options.
     $collection->add('example.css')->apply('LessFilter', array('/path/to/node');
 });
 ~~~~
 
+Filters can also be applied to the entire collection. Just remember what assets are in your collection, as some filters are style or script specific and you may run into problems using a filter on an unsupported asset.
+
+~~~~
+// Apply a filter to an entire collection.
+Basset::collection('website', function($collection)
+{
+    $collection->requireDirectory('assets/css')
+})->apply('CssMinFilter');
+~~~~
+
 *For a complete rundown on the available filters see the [Assetic documentation](https://github.com/kriswallsmith/assetic#filters).*
+
+Basset does come bundled with a few extra filters found at `vendor/jasonlewis/basset/src/Basset/Filter`. Read more about [Basset's Filters](http://jasonlewis.me/code/basset/filters)
 
 #### Named Filters
 
@@ -167,7 +195,7 @@ Filters can also be named to quickly apply them on multiple collections. Named f
 
 ~~~~
 'filters' => array(
-    'Less' => 'LessFilter'
+    'UriRewrite' => 'UriRewriteFilter'
 )
 ~~~~
 
@@ -175,8 +203,8 @@ If you need to adjust some options for the filter you can define it as an array,
 
 ~~~~
 'filters' => array(
-    'Less' => array(
-        'LessFilter' => array('/path/to/node')
+    'UriRewrite' => array(
+        'UriRewriteFilter' => array('/path/to/document/root')
     )
 )
 ~~~~
@@ -187,13 +215,13 @@ Filters can then be applied by using its name.
 Basset::collection('website', function($collection)
 {
     // Apply a named filter to the example.css file.
-    $collection->add('example.css')->apply('Less');
+    $collection->add('example.css')->apply('UriRewrite');
 });
 ~~~~
 
 ### Compiling Collections
 
-Collections can be compiled and stored as static assets to leverage browser caching. Static assets are fingerprinted with an MD5 of the last modified time of each asset. This allows the browsers cache to be *busted* when you re-compile a collection.
+Collections can be compiled and stored as static assets to leverage browser caching. Static assets are fingerprinted with an MD5 of the last modified time of each asset. This allows the browsers cache to be *busted* when you re-compile a collection after making changes.
 
 To compile a collection you need access to the command line. In your terminal you can view the help for compiling a collection.
 
@@ -246,11 +274,11 @@ Done!
 
 ### Environment Detection
 
-Basset uses environments to detect what kind of assets to serve. When in development Basset will serve assets as individual files. This allows you to continue to use tools like Firebug to browse styles and scripts and correctly debug errors.
+Basset uses environments to detect what kind of assets to serve. When in development Basset will serve assets as individual files. These assets should be within your public directory so that Basset can serve them correctly. This allows you to continue to use tools like Firebug to browse styles and scripts and correctly debug errors.
 
 *Filters are not applied to assets when serving them individually.*
 
-When Basset detects that is within the production environment it will attempt to serve static assets generated via the command line. If it cannot find the static assets it will gracefully degrade to serving individual assets.
+When Basset detects that it is within the production environment it will attempt to serve static assets generated via the command line. If it cannot find the static assets it will gracefully degrade to serving individual assets.
 
 The `production_environment` configuration key is used to help Basset determine if it’s within the production environment.
 
