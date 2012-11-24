@@ -2,10 +2,10 @@
 
 Bundles with Basset are some filters that can be used on your assets.
 
-### UriRewriteFilter
+**UriRewriteFilter**  
 The `Basset\Filter\UriRewriteFilter` is similar in nature to Assetic's `Assetic\Filter\CssRewriteFilter`. Basset's `UriRewriteFilter` is based on the [Minify UriRewriter](https://github.com/mrclay/minify/blob/master/min/lib/Minify/CSS/UriRewriter.php) class. As such I strongly recommend using this over Assetic's `CssRewriteFilter`.
 
-#### Usage
+**Usage**  
 This filter accepts one parameter which should be the path to your public directory or document root.
 
 ~~~~
