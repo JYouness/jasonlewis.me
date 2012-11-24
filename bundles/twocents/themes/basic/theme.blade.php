@@ -17,6 +17,7 @@
 				<ul>
 					<li>{{ HTML::link_to_route('twocents: home', 'Home') }}</li>
 					<li>{{ HTML::link_to_route('twocents: page', 'Code', array('code')) }}</li>
+					<li>{{ HTML::link_to_route('twocents: page', 'Laravel Tutorials', array('laravel-tutorials')) }}</li>
 					<li>{{ HTML::link('http://github.com/jasonlewis', 'GitHub') }}</li>
 					<li>{{ HTML::link('http://twitter.com/jasonclewis', 'Twitter') }}</li>
 					<li>{{ HTML::link('https://plus.google.com/u/0/110953082286731007596?rel=author', 'G+') }}
