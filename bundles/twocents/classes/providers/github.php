@@ -89,11 +89,14 @@ class GitHub extends Provider {
 		// Spin through each of the assets and add them to their respective articles.
 		foreach ($this->fetch() as $item)
 		{
-			$article = trim(str_replace(array($item->name, 'articles'), null, $item->path), '/');
-
-			if (isset($articles[$article]))
+			if (is_object($item))
 			{
-				$articles[$article]->registerAsset($item->name, base64_decode($item->content));
+				$article = trim(str_replace(array($item->name, 'articles'), null, $item->path), '/');
+
+				if (isset($articles[$article]))
+				{
+					$articles[$article]->registerAsset($item->name, base64_decode($item->content));
+				}
 			}
 		}
 
@@ -143,7 +146,10 @@ class GitHub extends Provider {
 			// Spin through the assets we need to fetch and add them to the article.
 			foreach ($this->fetch() as $asset)
 			{
-				$article->registerAsset($asset->name, base64_decode($asset->content));
+				if (is_object($asset))
+				{
+					$article->registerAsset($asset->name, base64_decode($asset->content));
+				}
 			}
 
 			$article->body(base64_decode($article->raw->content))
