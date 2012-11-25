@@ -41,6 +41,14 @@ Basset's configuration file can be extended by creating `app/config/packages/jas
 
 Remember to update your directories or set your production environment.
 
+You can quickly publish a configuration file by running the following Artisan command.
+
+~~~~
+$ php artisan config:publish jasonlewis/basset
+~~~~
+
+This will copy the configuration file to `app/config/packages/jasonlewis/basset.php`.
+
 ### Asset Collections
 
 Collections can be defined just about anywhere. The best place to put your collections is somewhere that's included from both the web and the command line.
