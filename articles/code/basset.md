@@ -25,9 +25,21 @@ In your Laravel 4 application add `jasonlewis/basset` as a requirement.
 "jasonlewis/basset": "3.*"
 ~~~~
 
-Update your packages with `composer update`.
+Update your packages with `composer update` or install with `composer install`.
 
-You need to register Basset's service provider with Laravel. Open up `app/config/app.php` and add `Basset\BassetServiceProvider` to the array of providers at the bottom. To confirm that Basset is indeed working correctly you can use your terminal.
+Once Composer has installed or updated your packages you need to register Basset with Laravel itself. Open up `app/config/app.php` and find the `providers` key towards the bottom.
+
+~~~~
+'Basset\BassetServiceProvider'
+~~~~
+
+Next you need to alias Basset's facade. Find the `aliases` key which should be below the `providers` key.
+
+~~~~
+'Basset' => 'Basset\Facades\Basset'
+~~~~
+
+To confirm that Basset is indeed working correctly you can use your terminal.
 
 ~~~~
 $ php artisan basset
@@ -308,3 +320,21 @@ To use your asset collections in a view you use the `Basset::show()` method. Thi
 ~~~~
 
 The assets shown will depend on the environment that Basset detects along with the availability of any static assets.
+
+### Command Line
+
+Basset makes use of the command line to publish assets as well as provide information about collections. To get a list of available collections you can use the `basset:list` command.
+
+~~~~
+$ php artisan basset:list
+~~~~
+
+You should receive a list of all your available collections and the status of the scripts and styles of that collection.
+
+~~~~
+basic:
+   Styles:  Uncompiled or needs re-compiling
+   Scripts: None available
+~~~~
+
+You can get the version of Basset by running `php artisan basset`. The current version will be displayed.
