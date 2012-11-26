@@ -68,7 +68,7 @@ require __DIR__ . DS . 'start' . DS . 'validation.php';
 
 Don't like the idea of manually writing it all? Well you can automate the process by using a `FilesystemIterator`.
 
-<pre>
+~~~~
 // File: application/start.php
 
 /**
@@ -83,7 +83,7 @@ foreach ($files as $file)
         require $file->getPathname();
     }
 }
-</pre>
+~~~~
 
 It's entirely up to you how you do it.
 
