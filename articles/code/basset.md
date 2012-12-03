@@ -25,6 +25,8 @@ In your Laravel 4 application add `jasonlewis/basset` as a requirement.
 "jasonlewis/basset": "3.*"
 ~~~~
 
+*Note that Basset is still being developed at the time of writing so you may need to use "\*" instead.*
+
 Update your packages with `composer update` or install with `composer install`.
 
 Once Composer has installed or updated your packages you need to register Basset with Laravel itself. Open up `app/config/app.php` and find the `providers` key towards the bottom.
@@ -49,7 +51,7 @@ You should get the Basset version displayed within your terminal. You're now rea
 
 ### Configuration
 
-Basset's configuration file can be extended by creating `app/config/packages/jasonlewis/basset.php`. You can find the default configuration file at `vendor/jasonlewis/basset/src/basset.php`. Any keys that you use within your own configuration file will overwrite the defaults. This means you don't have to copy the entire file, but only replace the keys you want to change.
+Basset's configuration file can be extended by creating `app/config/packages/jasonlewis/basset/config.php`. You can find the default configuration file at `vendor/jasonlewis/basset/src/config/config.php`. Any keys that you use within your own configuration file will overwrite the defaults. This means you don't have to copy the entire file, but only replace the keys you want to change.
 
 Remember to update your directories or set your production environment.
 
@@ -59,13 +61,13 @@ You can quickly publish a configuration file by running the following Artisan co
 $ php artisan config:publish jasonlewis/basset
 ~~~~
 
-This will copy the configuration file to `app/config/packages/jasonlewis/basset.php`.
+This will copy the default configuration file to `app/config/packages/jasonlewis/basset/config.php`.
 
 ### Asset Collections
 
 Collections can be defined just about anywhere. The best place to put your collections is somewhere that's included from both the web and the command line.
 
-Collections can be defined in your `app/config/packages/jasonlewis/basset.php` configuration file under the `collections` key. See the default configuration file for more information.
+Collections can be defined in your `app/config/packages/jasonlewis/basset/config.php` configuration file under the `collections` key. See the default configuration file for more information.
 
 You can also define collections in the `app/start/global.php` file or include another file within that global start file. This start file is included during the startup process by both the web and command line.
 
