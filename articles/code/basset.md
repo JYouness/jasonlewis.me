@@ -2,7 +2,7 @@
 
 Basset is a Better Asset Management package for Laravel. It easily allows you to manage all of your styles and scripts within your application.
 
-*Please note that the following guide is intended for the Laravel 4 version of Basset. The bundle for Laravel 3 is going to undergo some drastic changes to be brought in line with the Laravel 4 version.*
+The following guide is for Basset 4 which is the Laravel 4 version of Basset. For those using Laravel 3 please read the new [Basset 3 guide](http://jasonlewis.me/code/basset/v3).
 
 ### Features
 
@@ -14,7 +14,6 @@ Basset is a Better Asset Management package for Laravel. It easily allows you to
 ### Requirements
 
 - Laravel 4
-- Assetic
 - PHP 5.3+
 
 ### Installation
@@ -22,7 +21,7 @@ Basset is a Better Asset Management package for Laravel. It easily allows you to
 In your Laravel 4 application add `jasonlewis/basset` as a requirement.
 
 ~~~~
-"jasonlewis/basset": "3.*"
+"jasonlewis/basset": "4.*"
 ~~~~
 
 *Note that Basset is still being developed at the time of writing so you may need to use "\*" instead.*
