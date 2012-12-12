@@ -1,4 +1,4 @@
-@title Basset
+@title Basset 4
 
 Basset is a Better Asset Management package for Laravel. It easily allows you to manage all of your styles and scripts within your application.
 
