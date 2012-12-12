@@ -99,7 +99,6 @@ Basset::collection('website', function($collection)
 
     // Use the absolute path to a directory.
     $collection->requireDirectory('path: /path/to/directory');
-    
 });
 ~~~~
 
@@ -120,7 +119,6 @@ Basset::collection('website', function($collection)
 
     // Use the absolute path to a directory.
     $collection->requireTree('path: /path/to/directory');
-    
 });
 ~~~~
 
@@ -159,7 +157,6 @@ Basset::collection('website', function($collection)
 
     // Exclude a number of admin related files.
     $collection->requireDirectory('assets/css')->except(array('admin.css', 'admin-tables.css'));
-    
 });
 ~~~~
 
@@ -173,7 +170,6 @@ Basset::collection('website', function($collection)
 
     // Include only a number of admin related files.
     $collection->requireDirectory('assets/css')->only(array('admin.css', 'admin-tables.css'));
-    
 });
 ~~~~
 
