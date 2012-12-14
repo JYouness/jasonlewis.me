@@ -75,7 +75,7 @@ $date->today(); // Sets to todays date, e.g., 1991-01-31 00:00:00
 $date->tomorrow(); // Sets to tomorrows date, e.g., 1991-02-01 00:00:00
 
 $date->yesterday(); // Sets to yesterdays date, e.g., 1991-01-30 00:00:00
-~~~
+~~~~
 
 As you can see these helpers will also set the time to midnight.
 
