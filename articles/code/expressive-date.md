@@ -220,7 +220,7 @@ $timezone = $date->getTimezoneName(); // Australia/Melbourne
 Now that you have manipulated your date and time it's time for you to actually work with it.
 
 ~~~~
-$date = new ExpressiveDate('December 1, 2012 2:30:50 PM', 'Australia/Melbourne');
+$date = new ExpressiveDate('December 1, 2012 2:30:50 PM');
 
 $date->getDay(); // 1
 $date->getMonth(); // 12
@@ -247,22 +247,34 @@ $date->isWeekend(); // true
 It's now time to display your date and time to everyone. Expressive Date comes with a couple of predefined formatting methods for your convenience.
 
 ~~~~
-$date = new ExpressiveDate('December 1, 2012 2:30:50 PM', 'Australia/Melbourne');
+$date = new ExpressiveDate('December 1, 2012 2:30:50 PM');
 
-$date->getDateString(); // 2012-12-01
-$date->getDateTimeString(); // 2012-12-01 14:30:50
-$date->getShortDateString(); // Dec 1, 2012
-$date->getLongDateString(); // December 1st, 2012 at 2:30pm
-$date->getTimeString(); // 14:30:50
+$date->getDate(); // 2012-12-01
+$date->getDateTime(); // 2012-12-01 14:30:50
+$date->getShortDate(); // Dec 1, 2012
+$date->getLongDate(); // December 1st, 2012 at 2:30pm
+$date->getTime(); // 14:30:50
 
 // You can still define your own formats.
 $date->format('jS F, Y'); // 31st January, 2012
 ~~~~
 
+You can set a default date format on each instance of Expressive Date which will then be used when you cast the object to a string.
+
+~~~~
+$date = new ExpressiveDate('December 1, 2012 2:30:50 PM');
+
+echo $date; // 1st December, 2012 at 2:30pm
+
+$date->setDefaultDateFormat('d M y');
+
+echo $date; // 1 Dec 12
+~~~~
+
 Expressive Date also comes with a human readable or relative date method.
 
 ~~~~
-$date = new ExpressiveDate('December 1, 2012 2:30:50 PM', 'Australia/Melbourne');
+$date = new ExpressiveDate('December 1, 2012 2:30:50 PM');
 
 $date->getRelativeDate(); // Would show something similar to: 4 days ago
 ~~~~
@@ -270,8 +282,8 @@ $date->getRelativeDate(); // Would show something similar to: 4 days ago
 You can also pass in an instance of Expressive Date to compare against.
 
 ~~~~
-$now = new ExpressiveDate('December 1, 2012 2:30:50 PM', 'Australia/Melbourne');
-$future = new ExpressiveDate('December 9, 2012 7:45:32 AM', 'Australia/Melbourne');
+$now = new ExpressiveDate('December 1, 2012 2:30:50 PM');
+$future = new ExpressiveDate('December 9, 2012 7:45:32 AM');
 
 $now->getRelativeDate($future); // 1 week from now
 ~~~~
