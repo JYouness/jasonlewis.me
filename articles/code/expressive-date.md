@@ -294,6 +294,11 @@ Expressive Date is licensed under the 2-clause BSD, see the `LICENSE` file for m
 
 ### Changelog
 
+#### 1.0.1
+
+- Added the `setDefaultDate()` and `__toString()` methods.
+- Removed the 'String' suffix from date formatting methods.
+
 #### 1.0.0
 
 - Initial release
