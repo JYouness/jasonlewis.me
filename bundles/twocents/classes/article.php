@@ -84,7 +84,7 @@ class Article extends Meta {
 		{
 			preg_match('/(.*?)#/s', $this->body, $matches);
 
-			if (empty($matches))
+			if (empty($matches) or str_contains($this->body, '@more'))
 			{
 				preg_match('/(.*?)@more/s', $this->body, $matches);
 			}
