@@ -14,7 +14,7 @@ Open up your terminal and traverse to where you want your project. We'll then cr
 $ mkdir laravel-project && cd laravel-project
 $ git init
 Initialized empty Git repository in c:/wamp/www/laravel-project/.git/
-</pre>
+~~~~
 
 Great we have our empty repository, we can now go ahead and fetch a copy of Laravel.
 
