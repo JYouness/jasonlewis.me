@@ -6,7 +6,7 @@ Since you're reading this I'm assuming that you're aware of the upcoming Laravel
 
 At the time of writing (December 2012) Laravel 4 is still under development, although it's at a point where people are beginning to use it and see how it all works. When reading this article take it with a grain of salt as things *might* change in the official release of Laravel 4.
 
-The aim of this article is to give you, a current user of Laravel, an insight into what's changing in Laravel 4 that you'll need to be aware of, especially if you're thinking of upgrading. Before we crack on I'd like to point out that Laravel 3 is a great product and that you shouldn't upgrade your application just for the sake of [keeping up with the joneses](http://en.wikipedia.org/wiki/Keeping_up_with_the_Joneses). Right then, let's get started.
+The aim of this article is to give you, a current user of Laravel, an insight into what's changing in Laravel 4 that you'll need to be aware of, especially if you're thinking of upgrading. Before we crack on I'd like to point out that Laravel 3 is a great product and that you shouldn't upgrade your application just for the sake of [keeping up with the Joneses](http://en.wikipedia.org/wiki/Keeping_up_with_the_Joneses). Right then, let's get started.
 
 ### Installation
 
@@ -99,7 +99,7 @@ Now `UserController` will respond to URIs starting with `user`. You can also reg
 ~~~~
 public function getProfile()
 {
-    // Would response to localhost/user/profile if we used the above Route::controller()
+    // Would respond to localhost/user/profile if we used the above Route::controller()
 }
 ~~~~
 
@@ -242,7 +242,7 @@ public function users()
 }
 ~~~~
 
-In Laravel 4 the method names are now camel cased, as per PSR-1.
+In Laravel 4 the method names are now camel cased, as per [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md).
 
 ~~~~
 public function users()
