@@ -29,7 +29,7 @@ a:hover {
 
 #header h1 {
 	float: left;
-	font-family: "Ubuntu", serif;
+	font-family: "Ubuntu", "Helvetica", "Helvetica Neue", Arial, sans-serif;
 	font-size: 26px;
 	margin: 6px 0;
 	font-weight: normal;
@@ -91,7 +91,7 @@ a:hover {
 }
 
 #sidebar .section > h2 {
-	font-family: "Ubuntu", serif;
+	font-family: "Ubuntu", "Helvetica", "Helvetica Neue", Arial, sans-serif;
 	font-weight: bold;
 	font-size: 18px;
 	margin: 0 0 8px;
@@ -135,8 +135,9 @@ a:hover {
 #articles .article h3,
 #articles .article h4,
 #articles .article h5 {
-	font-family: "Ubuntu", serif;
+	font-family: "Ubuntu", "Helvetica", "Helvetica Neue", Arial, sans-serif;
 	font-weight: normal;
+	line-height: 1.1em;
 	font-size: 28px;
 	margin: 24px 0;
 	text-transform: uppercase;
