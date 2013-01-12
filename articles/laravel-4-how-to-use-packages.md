@@ -483,7 +483,13 @@ Now we'll set a property on the `Profiler` class from the constructor so that we
     
     }
 
-To generate the report we calculate the total execution time and return a view with an array of bound data. Here's what our `report.blade.php` view file looks like.
+Lastly we need to set the new dependency in the `composer.json` file in the `require` key.
+
+    "illuminate/view": "4.0.x"
+
+Notice that we're depending on only this component and not `illuminate/foundation` or `laravel/framework`. I **strongly** recommend you avoid depending on the entire framework for any package (where possible). Even when you're package is going to be tailored for Laravel itself I'm urging you all to avoid depending on the entire framework.
+
+Now, back on track. To generate the report we calculate the total execution time and return a view with an array of bound data. Here's what our `report.blade.php` view file looks like.
 
     // File: workbench/solitude/profiler/src/views/report.blade.php
 
@@ -831,6 +837,10 @@ As before we now need to set the property in the constructor.
         }
     
     }
+
+And again we need to set the dependency in the `composer.json` file.
+
+    "illuminate/config": "4.0.x"
 
 All that's left to do now is create the `enable()` and `disable()` methods.
 
