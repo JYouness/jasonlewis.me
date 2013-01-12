@@ -838,10 +838,6 @@ As before we now need to set the property in the constructor.
     
     }
 
-And again we need to set the dependency in the `composer.json` file.
-
-    "illuminate/config": "4.0.x"
-
 All that's left to do now is create the `enable()` and `disable()` methods.
 
     // File: workbench/solitude/profiler/src/Solitude/Profiler/Profiler.php
@@ -890,6 +886,56 @@ With Laravel 4 you can now publish a packages configuration file and have change
     $ php artisan config:publish --path workbench/solitude/profiler/src/config solitude/profiler
 
 You can now change the `app/config/packages/solitude/profiler/config.php` file and any keys you don't change will be taken from the default file.
+
+#### Facades And A Static Interface
+
+Laravel 4 has changed a lot under the hood, but on the outside these changes aren't as noticeable because we can still do things like `View::make()`, `Config::get()`, and `Validator::make()`. What a lot of people don't realise is that these aliases are actually pointing to a facade.
+
+What happens is when you make a static call the facade pulls the bound instance out of the application container and calls the method. Say for example you call `Config::get()`, behind the scenes it does something like `static::$app['config']->get()`, although it's slightly more complex then that.
+
+In our profiler package we want to be able to do `Profiler::addCheckpoint()` wherever we want. To do that we're going to create a facade and then alias it.
+
+    // File: workbench/solitude/profiler/src/Solitude/Profiler/Facades/Profiler.php
+
+    <?php namespace Solitude\Profiler\Facades;
+    
+    use Illuminate\Support\Facades\Facade;
+    
+    class Profiler extends Facade {
+    
+        /**
+         * Get the registered name of the component.
+         *
+         * @return string
+         */
+        protected static function getFacadeAccessor() { return 'profiler'; }
+    
+    }
+
+The most important part here is the facade accessor. Remember when we bound the profiler to the application container? That's what the facade accessor is, the name we used to bind our instance. In this case it was `profiler`.
+
+Let's alias this facade in `app/config/app.php`. Find the `aliases` key in the array and add in our `Profiler` alias.
+
+    'aliases' => array(
+
+        ...
+
+        'Profiler'   => 'Solitude\Profiler\Facades\Profiler',
+
+    ),
+
+Now we can use a static call to add a new checkpoint.
+
+    // app/routes.php
+
+    Profiler::addCheckpoint();
+
+    Route::get('user/login', function()
+    {
+        Profiler::disable();
+    
+        // Rest of your code...
+    });
 
 ### Conclusion
 
