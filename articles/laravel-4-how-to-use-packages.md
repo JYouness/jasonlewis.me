@@ -1,4 +1,4 @@
-@title  Laravel 4: How to use Packages
+@title  Laravel 4: How To Use Packages
 @author Jason Lewis
 @date   Sat Jan 12 2013 21:43:22 +1100
 
