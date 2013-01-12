@@ -37,7 +37,7 @@ You'll be prompted with some questions about your new package.
     What is your name?Jason Lewis
     What is your e-mail address?jason.lewis1991@gmail.com
 
-The vendor name in my case is just a random name that I thought up. You might want to use your company name or perhaps your cool web alias that you go by!
+The vendor name in my case is just a random name that I thought up. Ideally you'll be wanting to use your GitHub username as it will generally make things a lot easier.
 
 Once you've finished answering the questions the terminal will confirm that the workbench and your package have been created. You should now see a new `workbench` directory. This directory will hold all of your packages while you develop them.
 
@@ -879,13 +879,11 @@ You can now enable or disable the profiler at any stage during runtime.
 
 #### Publishing A Packages Configuration
 
-With Laravel 4 you can now publish a packages configuration file and have changes cascade back down to the original configuration file.
+With Laravel 4 you can now publish a packages configuration file and have changes cascade back down to the original configuration file. While you develop a package there is really no need to have its configuration published, however, for packages living in the `vendor` directory you can publish them like so.
 
-> At the time of writing there is no `--bench` option for publishing config, please see [PR #13](https://github.com/laravel/framework/pull/13).
+    $ php artisan config:publish solitude/profiler
 
-    $ php artisan config:publish --path workbench/solitude/profiler/src/config solitude/profiler
-
-You can now change the `app/config/packages/solitude/profiler/config.php` file and any keys you don't change will be taken from the default file.
+If our package was in the `vendor` directory it's config files would be published to `app/config/packages/solitude/profiler`.
 
 #### Facades And A Static Interface
 
