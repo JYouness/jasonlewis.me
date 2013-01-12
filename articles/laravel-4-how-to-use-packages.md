@@ -1,6 +1,6 @@
 @title  Laravel 4: How to use Packages
 @author Jason Lewis
-@date   Sat Jan 12 2012 21:43:22 +1100
+@date   Sat Jan 12 2013 21:43:22 +1100
 
 In the early days of Laravel we were blessed with modules. Modules allowed us to separate parts of our applications into more manageable pieces. This meant that modules could contain their own controllers, routes, libraries, configuration, composers, filters, etc. When Laravel 3 was released modules were revamped and renamed to bundles. A Laravel specific bundle repository was setup and developers could publish their bundles so that others could install them with Artisan. It was a great way to easily drop code in to an existing application.
 
