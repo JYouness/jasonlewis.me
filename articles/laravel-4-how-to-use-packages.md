@@ -57,7 +57,7 @@ If you browse the `workbench` directory you'll see how our package has been setu
                 /config
                 /Solitude
                    /Profiler
-                      ProfilerServiceProfider.php
+                      ProfilerServiceProvider.php
                 /lang
                 /migrations
                 /views
