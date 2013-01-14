@@ -4,7 +4,15 @@
 
 In the early days of Laravel we were blessed with modules. Modules allowed us to separate parts of our applications into more manageable pieces. This meant that modules could contain their own controllers, routes, libraries, configuration, composers, filters, etc. When Laravel 3 was released modules were revamped and renamed to bundles. A Laravel specific bundle repository was setup and developers could publish their bundles so that others could install them with Artisan. It was a great way to easily drop code in to an existing application.
 
-With Laravel 4 hitting beta many are wondering what will happen to bundles and how they'll need to be changed to be of any use. There won't be any Laravel specific bundle repository for Laravel 4 since it's now making use of Composer to handle package dependencies.
+With Laravel 4 hitting beta soon many are wondering what will happen to bundles and how they'll need to be changed to be of any use. There won't be any Laravel specific bundle repository for Laravel 4 since it's now making use of Composer to handle package dependencies.
+
+### Beware Laravel 4
+
+Please keep in mind that at the time of writing Laravel 4 is still in a pre-beta stage (soon to be in beta). Remember that some things may not work or some things may be buggy. Support for Laravel 4 is limited due to the limited amount of people who have used or are using it. If you're stuck, the best place for help is [#laravel](http://laravel.com/irc) on Freenode.
+
+If you have a request or a propsal for Laravel 4 make sure you read the notes on [contributing](http://four.laravel.com/docs/contributing) before opening an issue on [laravel/framework](http://github.com/laravel/framework).
+
+Now, let's crack on!
 
 ### What about my bundles?
 
