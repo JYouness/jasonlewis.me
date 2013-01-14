@@ -201,6 +201,13 @@ a:hover {
 	margin: 8px 0;
 }
 
+#articles .article blockquote {
+	border-left: 3px solid #eee;
+	margin-left: 0;
+	padding: 2px 0 2px 15px;
+	background-color: #fcfcfc;
+}
+
 #articles .article .body {
 	padding: 18px 0 0;
 }
